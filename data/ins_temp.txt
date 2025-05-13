@@ -1,0 +1,14 @@
+CC(C)CCCSCc1noc(C(C)C)n1
+c1cc(N2CCC23CCCC3)ncc1CN1CCOCC1
+CCn1nc(C)c([N+](=O)[O-])c1NCC1(CCO)CCC1
+CC[C@H]1C[N@H+](C)CCN1Cc1ccc2nc(C)ccc2c1
+CCc1nn(C)c(Cl)c1C[NH2+]C[C@@](C)(O)c1cc(C)oc1C
+CC(C)[N@H+](C)C[C@H](O)CN(C)[C@@H](C)CC#N
+S=C(NN=Cc1ccccc1OCc1ccccc1Cl)Nc1ccccc1
+CCOc1nnc(CN(C)[C@H](C)C(C)(C)O)s1
+CCO[C@@H]1C[C@@H]([NH2+]CCOC(C)(C)C)[C@]12CCCO2
+CC(=O)NC[C@H](CC(=O)N(C)CCc1cnccn1)CC(C)C
+CC#CCCCC(=O)N[C@H]1C[C@@H]([NH2+]CCCS(C)(=O)=O)C1
+C=C[C@@H](C)NS(=O)(=O)c1ccc(S(=O)(=O)N[C@]2(C#N)CC2(C)C)cc1
+O[C@H](COCc1ccco1)C[N@@H+]1CC[C@@H](C2CC2)C1
+C[C@@H](O)CN(C)C(=O)N[C@H](C)C(F)(F)F

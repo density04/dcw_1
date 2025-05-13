@@ -1,0 +1,5 @@
+OC(=Nc1ccc(Oc2ccc(Cl)cc2)c(Cl)c1)c1cc(I)cc(I)c1O
+CCN(C(=O)CCS(C)(=O)=O)c1sc(-c2cccnc2)nc1Cl
+CCOC(=O)CSc1nc(C(C)(C)C)nn1C(=O)N(C)C
+Clc1cccc(N2CCN(c3cccc(Cl)c3)C2C(Cl)(Cl)Cl)c1
+CCN(C(=O)CCSCCC(F)(F)F)c1cn(-c2cccnc2)nc1Cl
