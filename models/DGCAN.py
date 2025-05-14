@@ -307,5 +307,5 @@ class Tester(object):
         # AUC = roc_auc_score(tru, pre)  # 计算AUC分数
         cnf_matrix = confusion_matrix(tru, pred)  # 计算混淆矩阵
         predictions = np.stack((tru, pred, pre))  # 堆叠预测结果
-        return  predictions 
+        return  predictions[2,:]
         # return predicted_scores

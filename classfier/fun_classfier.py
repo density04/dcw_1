@@ -34,9 +34,37 @@ def fun_classifer(filepath):
     
     
     result=pd.DataFrame({'smiles':data,'rnn':np.zeros(len(data)),'gcn':np.zeros(len(data)),'dcan':np.zeros(len(data))})
-    result['rnn']=rnn_prediction_raw
-    result['gcn']=gcn_prediction_raw
-    result['dcan']=dcan_prediction_raw[2,:]
+    rnn_prediction_raw=np.array(rnn_prediction_raw)
+    gcn_prediction_raw=np.array(gcn_prediction_raw)
+    dcan_prediction_raw=np.array(dcan_prediction_raw)
+
+    rnn_train_min=28.412708402586876
+    rnn_train_max=94.73877715476192
+    gcn_train_min=0.0001884767698356
+    gcn_train_max=1.0
+    dcan_train_max=1
+    dcan_train_min=0
+    result['rnn']=(rnn_prediction_raw-rnn_train_min)/(rnn_train_max-rnn_train_min)
+    result['gcn']=(gcn_prediction_raw-gcn_train_min)/(gcn_train_max-gcn_train_min)
+    result['dcan']=(dcan_prediction_raw-dcan_train_min)/(dcan_train_max-dcan_train_min)
+
+    ol=pd.DataFrame([])
+    ol['rnn']=[1 if i>0.5 else 0 for i in result['rnn']]
+    ol['gcn']=[1 if i>0.5 else 0 for i in result['gcn']]
+    ol['dcan']=[1 if i>0.5 else 0 for i in result['dcan']]
+    ol['result']=[1 if sum(ol.iloc[i,:])>=2 else 0 for i in range(len(ol['rnn']))]
+    for i in range(result.shape[0]):
+        for j in range(1,4):
+            result.iloc[i,j]=np.max([0,result.iloc[i,j]])
+            result.iloc[i,j]=np.min([1,result.iloc[i,j]])
+    points=[]
+    for i in range(ol.shape[0]):
+        if ol.iloc[i,3]==1:
+            points.append(np.dot(ol.iloc[i,0:3],result.iloc[i,1:4])/sum(ol.iloc[i,0:3])) 
+        else:
+            points.append(np.dot((1-ol.iloc[i,0:3]),result.iloc[i,1:4])/sum(1-ol.iloc[i,0:3]))
+    result['final_points']=points
+    result['type']=ol['result']
     return result
 
 if __name__=='__main__':
