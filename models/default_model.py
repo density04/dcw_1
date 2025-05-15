@@ -33,30 +33,30 @@ class DefaultModel(nn.Module) :
             if key not in model_params :
                 model_params[key] = value
     
-    def initialize_model(self, device, load_save_file=None):
-        """
-        To set device of model
-        If there is save_file for model, load it
-        """
-        if load_save_file:
-            self.load_state_dict(torch.load(load_save_file, map_location=device))
-        else:
-            for param in self.parameters():
-                if param.dim() == 1:
-                    continue
-                else:
-                    nn.init.xavier_normal_(param)
+    # def initialize_model(self, device, load_save_file=None):
+    #     """
+    #     To set device of model
+    #     If there is save_file for model, load it
+    #     """
+    #     if load_save_file:
+    #         self.load_state_dict(torch.load(load_save_file, map_location=device))
+    #     else:
+    #         for param in self.parameters():
+    #             if param.dim() == 1:
+    #                 continue
+    #             else:
+    #                 nn.init.xavier_normal_(param)
         
-        if hasattr(self, '_training_step') : return self
+    #     if hasattr(self, '_training_step') : return self
 
-        if torch.cuda.device_count() > 1:
-            model = nn.DataParallel(self)
-            model.device = device
-        else :
-            model = self
+    #     if torch.cuda.device_count() > 1:
+    #         model = nn.DataParallel(self)
+    #         model.device = device
+    #     else :
+    #         model = self
 
-        model.to(device)
-        return self.trainer(model)
+    #     model.to(device)
+    #     return self.trainer(model)
 
     def test(self, smiles: str):
         pass
@@ -64,7 +64,7 @@ class DefaultModel(nn.Module) :
     def construct_dataset(self, data) :
         pass
 
-    def construct_dataloader(self, train_data, val_data, batch_size, num_workers, sampler = None) :
+    def construct_dataloader(self, train_data, batch_size, num_workers=0, sampler = None) :
         if train_data is not None :
             train_dataset = self.construct_dataset(train_data)
             collate_fn = getattr(train_dataset, 'collate_fn', None)
@@ -76,14 +76,8 @@ class DefaultModel(nn.Module) :
         else :
             train_dataloader = None
 
-        if val_data is not None :
-            val_dataset = self.construct_dataset(val_data)
-            collate_fn = getattr(val_dataset, 'collate_fn', None)
-            val_dataloader = DataLoader(val_dataset, batch_size, shuffle=False, num_workers=num_workers, collate_fn=collate_fn)
-        else :
-            val_dataloader = None
 
-        return train_dataloader, val_dataloader
+        return train_dataloader
 
     @classmethod
     def load_model(cls, model_path, map_location = 'cpu') :

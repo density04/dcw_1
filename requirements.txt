@@ -1,7 +1,0 @@
-matplotlib==3.10.3
-numpy==2.2.5
-omegaconf==2.3.0
-pandas==2.2.3
-rdkit==2023.3.2
-scikit_learn==1.6.1
-torch==2.7.0+cu126

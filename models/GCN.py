@@ -10,7 +10,7 @@ from rdkit import Chem
 from . import layers
 from .default_model import DefaultModel, default_trainer
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from data_utils import get_atom_feature, get_adj
+from data.data_utils import get_atom_feature, get_adj
 from dataset import GraphDataset
 
 

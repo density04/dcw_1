@@ -4,7 +4,7 @@ import torch
 import random
 from rdkit import Chem
 from rdkit.Chem.EnumerateStereoisomers import EnumerateStereoisomers
-import data_utils as DATA_UTILS
+import data.data_utils as DATA_UTILS
 
 MAX_ATOM = 100
 

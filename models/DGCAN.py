@@ -264,22 +264,9 @@ class Tester(object):
         return  predictions 
         # return predicted_scores
 
-    def save_result(self, result, filename):
-        with open(filename, 'a') as f:  # 以追加模式打开文件
-            f.write(result + '\n')  # 写入结果
-
-    def save_predictions(self, predictions, filename):
-        with open(filename, 'w') as f:  # 以写入模式打开文件
-            f.write('Smiles\tCorrect\tPredict\n')  # 写入表头
-            f.write(predictions + '\n')  # 写入预测结果
-
-    def save_model(self, model, filename):
-        torch.save(model.state_dict(), filename)  # 保存模型参数
 
 
-def dump_dictionary(dictionary, filename):
-    with open('../DGCAN/model' + filename, 'wb') as f:  # 以二进制写入模式打开文件
-        pickle.dump(dict(dictionary), f)  # 将字典写入文件
+
 
 
 

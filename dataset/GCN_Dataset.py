@@ -4,7 +4,7 @@ import torch
 import random
 from rdkit import Chem
 
-import data_utils as DATA_UTILS
+import data.data_utils as DATA_UTILS
 
 MAX_ATOM = 100
 
@@ -62,9 +62,9 @@ class GraphDataset(Dataset):
             adj_list.append(padded_adj)
             y_list.append(b['Y'])
         sample['N'] = torch.Tensor(num_atom_list)
-        sample['A'] = torch.Tensor(adj_list)
-        sample['F'] = torch.Tensor(af_list)
-        sample['Y'] = torch.Tensor(y_list)
+        sample['A'] = torch.Tensor(np.array(adj_list))
+        sample['F'] = torch.Tensor(np.array(af_list))
+        sample['Y'] = torch.Tensor(np.array(y_list))
         return sample
 
 #===================================#

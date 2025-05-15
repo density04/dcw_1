@@ -6,7 +6,7 @@ import sys
 
 from .default_model import DefaultModel, default_trainer
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from data_utils import N_CHAR, C_TO_I
+from data.data_utils import N_CHAR, C_TO_I
 from dataset import SmilesDataset
 
 
@@ -18,7 +18,7 @@ class RNNLM(DefaultModel) :
     def __init__(self, input_size,stereo,hidden_size,n_layers,dropout) :
         super(RNNLM, self).__init__()
 
-        self.GRU = nn.GRU(input_size = hidden_size, hidden_size = hidden_size, \
+        self.GRU = nn.GRU(input_size = hidden_size, hidden_size = hidden_size, 
                           num_layers = n_layers, dropout = dropout)
         self.embedding = nn.Embedding(input_size, hidden_size)
         self.start_codon = nn.Parameter(torch.zeros(1, 1, hidden_size), requires_grad=True)

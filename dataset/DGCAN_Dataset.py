@@ -206,5 +206,5 @@ def get_dacan_test_dataset(smiles1,device):
 def to_gpu(dataset,device):
     new_data=[]
     for i in dataset:
-        new_data.append((i[0],torch.tensor(i[1]).to(device),torch.tensor(i[2]).to(device),i[3],torch.tensor(i[4]).to(device)))
+        new_data.append((i[0],torch.tensor(np.array(i[1])).to(device),torch.tensor(np.array(i[2])).to(device),i[3],torch.tensor(np.array(i[4])).to(device)))
     return new_data
