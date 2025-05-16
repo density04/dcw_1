@@ -20,17 +20,17 @@ def ins_classifer(filepath):
     data=list(open(filepath))
 
     gcn_model = GCNModel(input_size=31, hidden_size1=32, hidden_size2=256, n_layers=4, n_heads=4, dropout=0.2)
-    gcn_model.load_state_dict(torch.load('models/para/gcn_model_all_ins.pth'))
+    gcn_model.load_state_dict(torch.load('models/para/gcn_ins.pth'))
     gcn_model=gcn_model.to(device)
     gcn_prediction_raw=gcn_model.test(data)
 
     rnn_model = RNNLM(input_size=66,stereo=True,hidden_size=1024,n_layers=4,dropout=0.2)
-    rnn_model.load_state_dict(torch.load('models/para/rnn_model_all_ins.pth'))
+    rnn_model.load_state_dict(torch.load('models/para/rnn_ins.pth'))
     rnn_model=rnn_model.to(device)
     rnn_prediction_raw=rnn_model.test(data)
 
     DCAN_model = DGCAN.MolecularGraphNeuralNetwork(5000,dim=52, layer_hidden=4, layer_output=10, dropout=0.45)
-    DCAN_model.load_state_dict(torch.load('models/para/dcan_model_all_ins.pth'))
+    DCAN_model.load_state_dict(torch.load('models/para/dcan_ins.pth'))
     DCAN_model=DCAN_model.to(device)
     dcan_prediction_raw=DCAN_model.test(data=data)
     
